@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  rpm:
+    build: .
+    volumes:
+      - ./rpmbuild:/root/rpmbuild
+      - ./.rpmmacros:/root/.rpmmacros
+      - ${HOME}/.gnupg/:/root/.gnupg/
+      - ./test:/test

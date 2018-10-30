@@ -1,0 +1,7 @@
+%_topdir /root/rpmbuild
+%packager Samuel Berthe <contact@samuel-berthe.fr>
+%dist .el7.samber
+%_signature gpg
+%_gpg_path /root/.gnupg
+%_gpg_name Samuel Berthe
+%_gpgbin /usr/bin/gpg

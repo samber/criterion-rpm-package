@@ -2,3 +2,4 @@ rpmbuild/BUILD
 rpmbuild/BUILDROOT
 rpmbuild/RPMS
 rpmbuild/SRPMS
+test/test_suite
