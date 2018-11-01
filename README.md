@@ -20,7 +20,7 @@ dnf install 'dnf-command(builddep)' rpm-build rpm-sign rpmlint gpg pinentry
 
 # build
 dnf builddep -y SPECS/libcriterion.spec
-rpmbuild -ba --clean SPECS/libcriterion.spec
+rpmbuild -ba --clean --target=x86_64 SPECS/libcriterion.spec
 
 # sign
 gpg --export -a 'contact@samuel-berthe.fr' > /tmp/RPM-GPG-KEY-samber
@@ -49,4 +49,11 @@ gcc hello_world.c test_hello_world.c -o test_suite -lcriterion
 
 ```
 rpmlint libcriterion.spec
+```
+
+or for more comments:
+
+```
+npm -ivh <file>.rpm
+rpmlint libcriterion
 ```
