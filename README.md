@@ -3,7 +3,9 @@
 ## Usage
 
 1- Go to `release` section
+
 2- Download libcriterion-devel-v2.3.2-0.x86_64.rpm
+
 3- `rpm -ivh libcriterion-devel-v2.3.2-0.x86_64.rpm`
 
 ## Build package
