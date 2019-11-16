@@ -3,7 +3,7 @@
 ## Usage
 
 ```bash
-$ rpm -ivh https://github.com/samber/criterion-rpm-package/releases/download/2.3.3/libcriterion-devel-v2.3.3-2.x86_64.rpm
+$ rpm -ivh https://github.com/samber/criterion-rpm-package/releases/download/2.3.3/libcriterion-devel-2.3.3-2.el7.x86_64.rpm
 ```
 
 ## Build package
@@ -67,6 +67,6 @@ rpmlint libcriterion.spec
 or for more comments:
 
 ```
-npm -ivh <file>.rpm
+rpm -ivh <file>.rpm
 rpmlint libcriterion
 ```
