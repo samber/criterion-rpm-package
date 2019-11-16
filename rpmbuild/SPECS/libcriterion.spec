@@ -1,14 +1,14 @@
 %define projectname criterion
 
 Name:           lib%{projectname}-devel
-Version:        2.3.2
-Release:        1%{?dist}
+Version:        2.3.3
+Release:        2%{?dist}
 Summary:        A cross-platform C and C++ unit testing framework for the 21th century
 Group:          Development/Libraries
 License:        MIT
 URL:            https://github.com/Snaipe/Criterion
 Vendor:         Snaipe
-Source:         https://github.com/Snaipe/Criterion/releases/download/v2.3.2/criterion-v2.3.2.tar.bz2
+Source:         https://github.com/Snaipe/Criterion/releases/download/v2.3.3/criterion-v2.3.3.tar.bz2
 Prefix:         %{_prefix}
 BuildRoot:      %{_tmppath}/%{name}-v%{version}-root
 BuildRequires:  make, cmake, gcc, clang
@@ -77,5 +77,7 @@ mv %{buildroot}%{_prefix}/lib %{buildroot}%{_prefix}/lib64
 %{_datarootdir}/pkgconfig/*.pc
 
 %changelog
+* Sat Nov 16 2019 Samuel Berthe <dev@samuel-berthe.fr> v2.3.3-2.samber
+- Upgrade to libcriterion v2.3.3
 * Tue Oct 30 2018 Samuel Berthe <dev@samuel-berthe.fr> v2.3.2-1.samber
 - Initial RPM release
