@@ -1,17 +1,17 @@
 %define projectname criterion
 
 Name:           lib%{projectname}-devel
-Version:        2.3.3
-Release:        2%{?dist}
+Version:        2.4.0
+Release:        3%{?dist}
 Summary:        A cross-platform C and C++ unit testing framework for the 21th century
 Group:          Development/Libraries
 License:        MIT
 URL:            https://github.com/Snaipe/Criterion
 Vendor:         Snaipe
-Source:         https://github.com/Snaipe/Criterion/releases/download/v2.3.3/criterion-v2.3.3.tar.bz2
+Source:         https://github.com/Snaipe/Criterion/releases/download/v2.4.0/criterion-2.4.0.tar.xz
 Prefix:         %{_prefix}
-BuildRoot:      %{_tmppath}/%{name}-v%{version}-root
-BuildRequires:  make, cmake, gcc, clang
+BuildRoot:      %{_tmppath}/%{name}-%{version}-root
+BuildRequires:  make, cmake, gcc, clang, meson, ninja-build, libgit2, libffi-devel
 Requires:       gcc
 
 %description
@@ -44,23 +44,32 @@ Full documentation here: https://criterion.readthedocs.io
 
 %prep
 
-%setup -q -n %{projectname}-v%{version}
+%setup -q -n %{projectname}-%{version}
 
 %build
 
-mkdir build
-cd build
-cmake -DCMAKE_INSTALL_PREFIX:PATH=%{_prefix} ..
-cmake --build .
+# old build system (up to v2.3.3)
+# mkdir build
+# cd build
+# cmake -DCMAKE_INSTALL_PREFIX:PATH=%{_prefix} ..
+# cmake --build .
+
+# new build system (starting v2.4.0)
+meson build --prefix /usr
+ninja -C build
 
 %install
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 
 mkdir -p %{buildroot}
 
-cd build
-make install DESTDIR=%{buildroot}
-mv %{buildroot}%{_prefix}/lib %{buildroot}%{_prefix}/lib64
+# old build system (up to v2.3.3)
+# cd build
+# make install DESTDIR=%{buildroot}
+# mv %{buildroot}%{_prefix}/lib %{buildroot}%{_prefix}/lib64
+
+# new build system (starting v2.4.0)
+meson install -C build/ --destdir %{buildroot}
 
 %clean
 [ "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT
@@ -74,9 +83,11 @@ mv %{buildroot}%{_prefix}/lib %{buildroot}%{_prefix}/lib64
 %{_includedir}/%{projectname}/*.h
 %{_includedir}/%{projectname}/internal/*.h
 %{_includedir}/%{projectname}/internal/*.hxx
-%{_datarootdir}/pkgconfig/*.pc
+%{_libdir}/pkgconfig/*.pc
 
 %changelog
+* Sat Feb 23 2022 Samuel Berthe <dev@samuel-berthe.fr> v2.4.0-3.samber
+- Upgrade to libcriterion v2.4.0
 * Sat Nov 16 2019 Samuel Berthe <dev@samuel-berthe.fr> v2.3.3-2.samber
 - Upgrade to libcriterion v2.3.3
 * Tue Oct 30 2018 Samuel Berthe <dev@samuel-berthe.fr> v2.3.2-1.samber

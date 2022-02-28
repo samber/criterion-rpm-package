@@ -3,7 +3,7 @@
 ## Usage
 
 ```bash
-$ rpm -ivh https://github.com/samber/criterion-rpm-package/releases/download/2.3.3/libcriterion-devel-2.3.3-2.el7.x86_64.rpm
+$ rpm -ivh https://github.com/samber/criterion-rpm-package/releases/download/2.4.0/libcriterion-devel-2.4.0-3.el7.x86_64.rpm
 ```
 
 ## Build package
@@ -27,16 +27,16 @@ gpg --export -a 'contact@samuel-berthe.fr' > /tmp/RPM-GPG-KEY-samber
 rpm --import /tmp/RPM-GPG-KEY-samber
 
 rpm --addsign RPMS/x86_64/libcriterion-devel-*
-rpm --addsign SRPMS/libcriterion-devel-v2.3.3-2.src.rpm
+rpm --addsign SRPMS/libcriterion-devel-v2.4.0-3.src.rpm
 rpm --checksig RPMS/x86_64/libcriterion-devel-*
-rpm --checksig SRPMS/libcriterion-devel-v2.3.3-2.src.rpm
+rpm --checksig SRPMS/libcriterion-devel-v2.4.0-3.src.rpm
 ```
 
 ## Test RPM package
 
 ```
 cd rpmbuild/
-rpm -ivh RPMS/x86_64/libcriterion-devel-v2.3.3-2.x86_64.rpm
+rpm -ivh RPMS/x86_64/libcriterion-devel-v2.4.0-3.x86_64.rpm
 ```
 
 ```
@@ -55,7 +55,8 @@ gcc hello_world.c test_hello_world.c -o test_suite -lcriterion
 
 ```
 cd ./rpmbuild/SOURCES
-wget 'https://github.com/Snaipe/Criterion/releases/download/v2.3.3/criterion-v2.3.3.tar.bz2'
+wget 'https://github.com/Snaipe/Criterion/releases/download/v2.4.0/criterion-2.4.0.tar.xz'
+docker-compose run --rm rpm
 ```
 
 ## Contribute
